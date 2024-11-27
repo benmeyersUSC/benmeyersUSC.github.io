@@ -1,5 +1,5 @@
-Here you can say lots of fun things about your site.
+No category, no target audience.
 
-Maybe say a some things about yourself.
+Being a human is an incredible experience. Here I will launch my thoughts out to any eyes who are interesting in interpreting them. 
 
-Or maybe what you plan to blog about.
+Check out my code, too. I will definitely be referencing it. 
