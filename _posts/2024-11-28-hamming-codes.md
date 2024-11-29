@@ -27,7 +27,7 @@ Do we really want to have to retrieve another copy through another transmission?
 As with many of the revolutionary insights at this time and place, reaching far and deep into the future, the answer lay in the powerful structure of binary digits themselves. 
 In Hamming-encoded EC code, for a four-bit message, we could instead add 3 EC bits, which we will now call Parity (P) bits to our message and achieve some incredible results. 
 
-Instead of ```D1 D2 D3 D4``` , we can construct ```P1 P2 D1 P3 D2 D3 D4```. 
+Instead of ```D1 D2 D3 D4```, we can construct ```P1 P2 D1 P3 D2 D3 D4```
 
 What is going on here? Why 3 P bits? Why that order?
 
@@ -52,6 +52,8 @@ There is certainly some overlap between these groups, but they are all less than
 respect to these groups. Say P1 can somehow correspond to that first group, P2 to the second, and P3 to the third. What can we do here? Let's revisit our proposed encoded message once more, 
 but with the D bits filled in:
 
-```P1 P2 1 P3 0 1 1```
+```python
+P1 P2 1 P3 0 1 1
+```
 
 Hamming devised a scheme whereby, starting with P1, we would assign these P bits a value that ensures that the sum of their "group" is even.  
