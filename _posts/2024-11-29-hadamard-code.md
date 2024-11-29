@@ -1,1 +1,1 @@
-Hadamard Code
+The Hadamard Code
