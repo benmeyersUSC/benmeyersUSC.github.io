@@ -39,6 +39,12 @@ Why not share some of the packages I have imported to tune my brain...
 > - *Narcissus and Goldmund* by **Herman Hesse**
 > - *Catch 22* by **Joseph Heller**
 > - *Bach: Music in the Castle of Heaven* by **John Elliot Gardiner**
+> - *Cat's Cradle* by **Kurt Vonnegut**
+> - *Jailbird* by **Kurt Vonnegut**
+> - *Heart of Darkness* by Joseph Conrad
+> - *The Recursive Universe* by **William Poundstone**
+> - *Complexity: A Guided Tour* by **Melanie Mitchell**
+> - *Artificial Intelligence: A Guide For Thinking Humans* by **Melanie Mitchell**
 
 
 ### Youtube Channels that are as good as books:
