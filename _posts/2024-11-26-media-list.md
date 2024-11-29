@@ -12,9 +12,9 @@ Why not share some of the packages I have imported to tune my brain...
 > - *Computability and Unsolvability* by **Martin Davis**
 > - *A New Kind Of Science* by **Stephen Wolfram**
 > - *The Idea Factory* by **Jon Gartner**
-> - *Liar's Poker* by ** by **Michael Lewis**
-> - *The Big Short* by ** by **Michael Lewis**
-> - *Going Infinite* by ** by **Michael Lewis**
+> - *Liar's Poker* by **Michael Lewis**
+> - *The Big Short* by **Michael Lewis**
+> - *Going Infinite* by **Michael Lewis**
 > - *2001: A Space Odyssey* by **Arthur C. Clarke**
 > - *A Clockwork Orange* by **Anthony Burgess**
 > - *Farenheit 451* by **Ray Bradbury**
