@@ -1,6 +1,6 @@
 ## Hamming Codes 
 
-[HammingCodes.py]([hamming/HammingCodes.py]([https://github.com/benmeyersUSC/RandomScripts/blob/main/hamming/HammingCodes.py#L61](https://github.com/benmeyersUSC/RandomScripts/tree/main/error_correcting_codes)))
+[HammingCodes.py](https://github.com/benmeyersUSC/RandomScripts/tree/main/error_correcting_codes)
 
 Hamming codes are a category of error-correcting codes that enable both detection and reversion of errors in binary data. Suppose I wanted to sent a byte of information over a network
 to another computer; suppose I have data being stored on a disk in my computer; while technology today seems to do these things effortlessly, it was not always so. If you could just send binary data through wires or through the air, how would you go about efficiently ensuring that messages come through cleanly? There are many different ways in which a bit, being represented somehow physically in transit or storage, can be flipped or shut to 0. Data can become somewhat garbled in translation. 
@@ -88,7 +88,7 @@ Now we know that our message, encoded, should be:
 #### Decoding the Message
 When we receive a Hamming-coded message, we need to now verify that it made it here in tact. To do so, we need to verify these sums are even, because we know they were when the message was encoded. If they are all even, nothing more is needed and we just remove from the encoded message the bits at indices of powers of two (in other words, the P bits). 
 
-If any of the sums are not even, then we have some work to do. Let's take a look at the code in [my Python script]([hamming/HammingCodes.py]([https://github.com/benmeyersUSC/RandomScripts/blob/main/hamming/HammingCodes.py#L61](https://github.com/benmeyersUSC/RandomScripts/tree/main/error_correcting_codes))) to see how we fix an erroneous message. 
+If any of the sums are not even, then we have some work to do. Let's take a look at the code in [my Python script](https://github.com/benmeyersUSC/RandomScripts/tree/main/error_correcting_codes) to see how we fix an erroneous message. 
 
 ```python
 # In our example:
@@ -122,5 +122,5 @@ Beautifully, the algorithm just checks and accumulates the powers of 2, the basi
 The code may look naive and incomplete, in that a given failed check can be so confident as to what to add to our accumulated answer. However, *by construction*, we know that this method will work, because we encoded this message with P bits that specifically correspond to powers of 2. The only way to reach a certain number is with a certain combination of powers of 2 and certain powers of two can only reach certain numbers.
 
 
-This process, as you can see in [my script]([hamming/HammingCodes.py]([https://github.com/benmeyersUSC/RandomScripts/blob/main/hamming/HammingCodes.py#L61](https://github.com/benmeyersUSC/RandomScripts/tree/main/error_correcting_codes))), which exhaustively does this process for a random message of any length, will work for all lengths of messages. The only drawback in Hamming codes is that it only works to find a single flipped bit. If a message is corrupted in more than one place, we would be out of luck. Thank god for Hadamard's Error Correcting Codes!
+This process, as you can see in [my script](https://github.com/benmeyersUSC/RandomScripts/tree/main/error_correcting_codes), which exhaustively does this process for a random message of any length, will work for all lengths of messages. The only drawback in Hamming codes is that it only works to find a single flipped bit. If a message is corrupted in more than one place, we would be out of luck. Thank god for Hadamard's Error Correcting Codes!
 
