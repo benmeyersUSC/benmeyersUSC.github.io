@@ -1,4 +1,6 @@
-## Hamming Codes [(my Python script)]([hamming/HammingCodes.py](https://github.com/benmeyersUSC/RandomScripts/blob/main/hamming/HammingCodes.py#L61))
+## Hamming Codes 
+
+[(my Python script)]([hamming/HammingCodes.py](https://github.com/benmeyersUSC/RandomScripts/blob/main/hamming/HammingCodes.py#L61))
 
 Hamming codes are a category of error-correcting codes that enable durable and dynamic sending of packets of data. Suppose I wanted to sent a byte of information over a network
 to another computer: there could be any number of interferences that may cause a bit to be flipped along the way. 
