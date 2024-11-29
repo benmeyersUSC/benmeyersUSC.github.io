@@ -2,7 +2,7 @@
 
 [HammingCodes.py](https://github.com/benmeyersUSC/RandomScripts/tree/main/error_correcting_codes)
 
-Hamming codes are a category of error-correcting codes that enable both detection and reversion of errors in binary data. Suppose I wanted to sent a byte of information over a network
+Hamming codes are a category of error-correcting codes that enable both detection and reversion of errors in binary data. Suppose I wanted to send a byte of information over a network
 to another computer; suppose I have data being stored on a disk in my computer; while technology today seems to do these things effortlessly, it was not always so. If you could just send binary data through wires or through the air, how would you go about efficiently ensuring that messages come through cleanly? There are many different ways in which a bit, being represented somehow physically in transit or storage, can be flipped or shut to 0. Data can become somewhat garbled in translation. 
 Do I send it every couple seconds until I get a reply confirming
 the clean reception? What if *that* message has a bit-flip on its way to me?
@@ -10,7 +10,7 @@ How can we embed within the data some mechanism to check and correct any errors 
 
 ### Enter Claude Shannon and John Hamming
 While working at Bell Laboratories, these two pioneered Error-Correcting Codes in binary data that could first just detect errors, then eventually finding ways to precisely locate and thus fix errors in binary. 
-**Shannon and Hamming sought to answer the question: *can we devise a protocol to encode and decode messages in binary with some mechanism that can detect and then fix any unintended errors?***
+**Shannon and Hamming sought to answer a groundbreaking question: *Can we develop a method to encode binary messages in a way that not only detects errors but also corrects them efficiently?***
 
 
 If we wanted to send, for example, the four-bit code ```1011``` , how could we embed within it a minimal set of additional bits to aide in error-correction? We could definitely imagine ways
@@ -48,7 +48,7 @@ First, let us refresh with some counting in binary from 1 to 7 (the number, or i
 >- 110 = 6
 >- 111 = 7
 
-**Binary represents the weight or amount of powers of 2 starting at 2^0 on the far right (the 1's place) then 2^1 next (2's place) then 2^2 (4's place), and so on. We will be referring to these places in order from left to right, where the 1's place will the index 1, the 2's place will be index 2, and the 4's place will be index 3.**
+**Binary represents numbers as sums of powers of 2. The rightmost position (2^0) corresponds to the 1's place, the next (2^1) to the 2's place, and so on. We will be referring to these places in order from right to left, where the 1's place will the index 1, the 2's place will be index 2, and the 4's place will be index 3.**
 
 
 Notice that certain number have a 1 in index 1. Some have a 1 in index 2 or 3. Some have
@@ -62,8 +62,7 @@ Notice that certain number have a 1 in index 1. Some have a 1 in index 2 or 3. S
 
 There is certainly some overlap between these groups, but they're clearly well defined. And in fact, the overlap becomes crucially useful. For a number to be in one of these groups, it must have a 1 in the right index; it must include a specific *power* of 2 in its sum. Specifically, for any of these numbers to be created by adding powers of 2 (**ie represented in binary!**) it can only be done in one distinct way. 
 
-
-Suppose we implemented a similar sum-checking mechanism as discussed before, but with respect to these groups. Say P1 can somehow correspond to that first group (binary index 1), P2 to the second, and P3 to the third. Recognize again that these groups have a very specific affinity with each other: they share the same bit (or weight) in a given index. 
+Instead of a simple sum-check, Hamming devised a parity-check mechanism based on these groups. Each parity bit ensures that the total of its group is even. This provides a way to verify and locate errors in the encoded message. P1 corresponds to that first group (binary index 1), P2 to the second, and P3 to the third. Recognize again that these groups have a very specific affinity with each other: they share the same bit (or weight) in a given index. 
 
 What can we do here? Let's revisit our proposed encoded message once more, 
 but with the D bits filled in:
@@ -86,17 +85,17 @@ Now we know that our message, encoded, should be:
 ```
 
 #### Decoding the Message
-When we receive a Hamming-coded message, we need to now verify that it made it here in tact. To do so, we need to verify these sums are even, because we know they were when the message was encoded. If they are all even, nothing more is needed and we just remove from the encoded message the bits at indices of powers of two (in other words, the P bits). 
+When we receive a Hamming-coded message, we need to now verify that it arrived in tact. To do so, we need to verify these sums are even, because we know they were when the message was encoded. If they are all even, nothing more is needed and we just remove from the encoded message the bits at indices of powers of two (in other words, the P bits). 
 
 If any of the sums are not even, then we have some work to do. Let's take a look at the code in [my Python script](https://github.com/benmeyersUSC/RandomScripts/tree/main/error_correcting_codes) to see how we fix an erroneous message. 
 
 ```python
 # In our example:
 # parities = {
-    {"P1": "indices": [1, 3, 5, 7], ...},
-    {"P2": "indices": [2, 3, 6, 7], ...},
-    {"P3": "indices": [4, 5, 6, 7], ...}
-}
+#        {"P1": "indices": [1, 3, 5, 7], ...},
+#        {"P2": "indices": [2, 3, 6, 7], ...},
+#        {"P3": "indices": [4, 5, 6, 7], ...}
+#    }
 # msg = [0, 1, 1, 0, 0, 1, 1]
 
 flipped_bit_index = 0                       # final answer accumulator
@@ -108,7 +107,7 @@ for k in parities.keys():                       # for each parity bit ("P1", "P2
 
     if sm % 2 != 0:                             # if the sum is not even
         p_number = k[1:]                            # chop of "P" from the P bit key (in P1's loop this is literally "P1" without the first character = "1")
-        ordinal = (p_number) - 1                    # P1's p_number is 1, which is in index 0 of the message string...P2 in 1, P3 in 3, P4 in 7, P5 in 15...
+        ordinal = (p_number) - 1                    # convert the parity bit number (from the key like "P1") to its corresponding zero-based index
         flipped_bit_index += 2 ** ordinal           # add 2^P to the current sum
 
 
@@ -117,7 +116,7 @@ for k in parities.keys():                       # for each parity bit ("P1", "P2
 
 Diving into the code, we see that we are actually accumulating the answer for which bit may have been flipped on the fly. For each P bit and its corresponding set of bits it checks (always including itself), we calculate the sum. If that sum is odd, we have an error in this group and **we thus know that the index of the flipped bit will have a weight of 1 in the binary representation of its index**. The more rare cases where P bits are flipped (only rare because there will be ~log2(K) P bits, where K is the total bits in the encoded message), only their own Parity check will fail (ie have an odd sum). If any other number in their list causes the failure of a given Parity check, it means by definition that it has other powers of 2 as a part of its sum, so other checks will fail too. 
 
-By the end of looping through each P bit and their group, we do not even need any more calculation to *know* exactly where our error was and thus how to fix it. We harness the fact that a given power of two provides an otherwise unreachable dimension of addition, of a number. Whereas multiples of 2 are every other number, the only power of 2 that oscillates that frequently is 2^0. While we can add 2 some amount of times to itself to calculate any even number, certainly any power of 2, we can only represent a number in *one* way with binary. You cannot say that 8 has 3 times 2^0, we can at most say that it has 1 times 2^0. Then we have to talk about 2^1. Binary is strict, but such strictness later allows powerful information. "Restriction today gives certainty tomorrow" shows itself everywhere in programming.
+By checking each parity group, we can identify the exact location of a single-bit error with no additional computation. This elegant solution harnesses the unique properties of binary numbers and parity. We harness the fact that a given power of two provides an otherwise unreachable dimension of addition, of a number. Whereas multiples of 2 are every other number, the only power of 2 that oscillates that frequently is 2^0. While we can add 2 some amount of times to itself to calculate any even number, certainly any power of 2, we can only represent a number in *one* way with binary. You cannot say that 8 has 3 times 2^0, we can at most say that it has 1 times 2^0. Then we have to talk about 2^1. Binary is strict, but such strictness later allows powerful information. "Restriction today gives certainty tomorrow" shows itself everywhere in programming.
 
 #### The Beauty of the Encoding
 
