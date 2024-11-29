@@ -92,11 +92,15 @@ If any of the sums are not even, then we have some work to do. Let's take a look
 
 ```python
 # In our example:
-# p_bit_keys = ["P1", "P2", "P3"]
+# parities = {
+    {"P1": "indices": [1, 3, 5, 7], ...},
+    {"P2": "indices": [2, 3, 6, 7], ...},
+    {"P3": "indices": [4, 5, 6, 7], ...}
+}
 # msg = [0, 1, 1, 0, 0, 1, 1]
 
 flipped_bit_index = 0                       # final answer accumulator
-for k in p_bit_keys:                        # for each parity bit
+for k in parities.keys():                       # for each parity bit ("P1", "P2", "P3")
     indices = parities[k]["indices"]            # indices in the message that a P bit corresponds to (in P1's loop this would be [1, 3, 5, 7]
     sm = 0                                      # sum accumulator for inner loop
     for j in indices:                           # for each bit index in the indices we are checking
