@@ -8,7 +8,7 @@ Do I send it every couple seconds until I get a reply confirming
 the clean reception? What if *that* message has a bit-flip on its way to me?
 How can we embed within the data some mechanism to check and correct any errors that may arise in its transit or storage and do so efficiently?
 
-### Enter Claude Shannon and John Hamming
+### Enter Claude Shannon and Richard Hamming
 While working at Bell Laboratories, these two pioneered Error-Correcting Codes in binary data that could first just detect errors, then eventually finding ways to precisely locate and thus fix errors in binary. 
 **Shannon and Hamming sought to answer a groundbreaking question: *Can we develop a method to encode binary messages in a way that not only detects errors but also corrects them efficiently?***
 
