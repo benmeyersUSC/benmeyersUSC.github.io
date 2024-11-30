@@ -14,9 +14,8 @@ While working at Bell Laboratories, these two pioneered Error-Correcting Codes i
 
 
 If we wanted to send, for example, the four-bit code ```1011``` , how could we embed within it a minimal set of additional bits to aide in error-correction? We could definitely imagine ways
-to stuff error-correcting (EC) bits between each data (D) bit and somehow use those to ensure fidelity, right? What if we, say, prepended each bit with an EC bit that is just a copy of
-the D bit that follows, so our message would become```EC D EC D EC D EC D``` or ```1 1 0 0 1 1 1 1``` and have the receiving machine just check in pairs and get extra assurance of the data? Could certainly work to add redundancy. But doing so doubles the size of our message! At scale, this is a costly
-mechanism. 
+to stuff error-correcting (EC) bits between each data (D) bit and somehow use those to ensure fidelity, right? What if we, say, prepended each bit with two EC bits that are copies of
+the D bit that follows, so our message would become```EC EC D EC EC D EC EC D EC EC D``` or ```1 1 1 0 0 0 1 1 1 1 1 1``` and have the receiving machine just check in trios and take the majority value? Could certainly work to add redundancy. But doing so triples the size of our message! At scale, this is a costly mechanism. 
 
 What about instead adding the binary sum at the end of the four-bit piece of data, so our example would become ```D D D D EC EC...``` or ```1 0 1 1 1 1``` , where the first four bits are the same old D bits and the three EC bits at the end correspond to the sum of the digits (1 + 0 + 1 + 1 = 3, or 11 in binary)? As our D-bit count grows in larger messages, this sum at the end would grow logarithmically, achieving size efficiency at scale. This method could certainly tell us *whether or not* the data was messed with in any way. What about these sum bits flipping, though? What about finding and remedying the error?
 Do we really want to have to retrieve another copy through another transmission if there is any error detected? We need a way to not only detect, but fix!
