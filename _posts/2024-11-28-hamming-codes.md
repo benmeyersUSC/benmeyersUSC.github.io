@@ -73,6 +73,7 @@ but with the D bits filled in:
 
 ```python
 (P1) (P2) 1 (P3) 0 1 1
+ 1    2   3  4   5 6 7
 ```
 
 Hamming devised a scheme whereby we would assign these P bits a value that ensures that the sum of their index group is even. This way, we know *something* about certain parts of our message when it is sent and thus we have expectations for this property maintaining itself in transit and storage. If we recieve a Hamming-coded message and any of these parity bit groups do not add to an even number, then we will have known something went wrong in that group. And even more than that...Let us see it in action.
@@ -86,6 +87,7 @@ Now we know that our message, encoded, should be:
 
 ```python
 (0) (1) 1 (0) 0 1 1
+ 1   2  3  4  5 6 7
 ```
 
 #### Decoding the Message
