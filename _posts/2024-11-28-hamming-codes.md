@@ -31,10 +31,12 @@ Using Hamming codes, for a four-bit message, we could instead add 3 EC bits, whi
 Instead of 
 ```python
 D1 D2 D3 D4
+1  2  3  4
 ```
 we can construct 
 ```python
 (P1) (P2) D1 (P3) D2 D3 D4
+  1   2   3   4   5  6  7
 ```
 
 What is going on here? Why 3 P bits? Why that order?
