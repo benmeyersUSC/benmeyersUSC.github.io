@@ -1,5 +1,5 @@
 
-![some discription](/Error_Correcting_Codes.pdf)
+[File](/Error_Correcting_Codes.pdf)
 
 <!--## Hamming Codes 
 
