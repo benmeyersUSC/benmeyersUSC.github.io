@@ -1,4 +1,4 @@
-[Error Correcting Codes](./Error_Correcting_Codes.pdf){:target="_blank"}
+[Error Correcting Codes](Error_Correcting_Codes.pdf){:target="_blank"}
 
 <!--## Hamming Codes 
 
