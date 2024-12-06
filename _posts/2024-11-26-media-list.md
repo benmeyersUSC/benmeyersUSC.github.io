@@ -45,6 +45,11 @@ Why not share some of the packages I have imported to tune my brain...
 > - *The Recursive Universe* by **William Poundstone**
 > - *Complexity: A Guided Tour* by **Melanie Mitchell**
 > - *Artificial Intelligence: A Guide For Thinking Humans* by **Melanie Mitchell**
+> - *Surfaces and Essences* by **Douglas Hofstadter & Emmanuel Sander**
+> - *An Introduction to Information Theory: Symbols, Signals, & Noise* by **John Pierce**
+> - *Countdown to Zero Day* by **Kim Zetter**
+> - *The Art of Doing Science and Engineering* by **Richard Hamming**
+> - *A Brief History of Time* by **Stephen Hawking**
 
 
 ### Youtube Channels that are as good as books:
